@@ -24,6 +24,14 @@ export class SettingsScreenComponent implements OnInit {
     title: new FormControl('')
   });
 
+  updateForm = new FormGroup({
+    email: new FormControl(''),
+    lastName: new FormControl(''),
+    middleName: new FormControl(''),
+    firstName: new FormControl(''),
+    title: new FormControl('')
+  });
+
   constructor(private appReference: AppComponent,
               private accountService: AccountService) {
     this.loggedin = localStorage.getItem(LOCAL_STORAGE_EMAIL) !== null;
@@ -31,6 +39,18 @@ export class SettingsScreenComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if (this.loggedin) {
+      this.accountService.getAccountData(localStorage.getItem(LOCAL_STORAGE_EMAIL))
+        .then(value => {
+          this.updateForm.setValue({
+            email: value.email,
+            lastName: value.lastName,
+            middleName: value.middleName,
+            firstName: value.firstName,
+            title: value.title
+          });
+        });
+    }
   }
 
   checkAccountExistsAndLogIn(): void {

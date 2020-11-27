@@ -19,7 +19,7 @@ export class AccountService {
 
   checkIfAccountExists(email: string): Promise<boolean> {
     return new Promise(((resolve, reject) => {
-      this.http.get(environment.base_url + '/accounts', {
+      this.http.get(environment.base_url + '/accounts/check', {
         params: {
           email
         }
@@ -40,6 +40,13 @@ export class AccountService {
         email,
         password
       }, {}).subscribe(value => resolve(), error => reject(error));
+    });
+  }
+
+  getAccountData(email: string): Promise<AccountModel> {
+    return new Promise<AccountModel>((resolve, reject) => {
+      this.http.get(environment.base_url + '/accounts/' + email, {})
+        .subscribe((value: AccountModel) => resolve(value), error => reject(error));
     });
   }
 }

@@ -1,30 +1,30 @@
 <p>Информация о пользователе</p>
 
 <div *ngIf="loggedin">
-  <form>
+  <form [formGroup]="updateForm">
     <mat-form-field class="full-width">
       <mat-label>Email</mat-label>
-      <input matInput>
+      <input matInput formControlName="email">
     </mat-form-field>
 
     <mat-form-field class="full-width">
       <mat-label>Фамилия</mat-label>
-      <input matInput>
+      <input matInput formControlName="lastName">
     </mat-form-field>
 
     <mat-form-field class="full-width">
       <mat-label>Имя</mat-label>
-      <input matInput>
+      <input matInput formControlName="firstName">
     </mat-form-field>
 
     <mat-form-field class="full-width">
       <mat-label>Отчество</mat-label>
-      <input matInput>
+      <input matInput formControlName="middleName">
     </mat-form-field>
 
     <mat-form-field class="full-width">
       <mat-label>Должность</mat-label>
-      <input matInput>
+      <input matInput formControlName="title">
     </mat-form-field>
 
     <button mat-flat-button color="primary">Сохранить</button>
