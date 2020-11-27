@@ -38,6 +38,13 @@
       <input matInput formControlName="email">
     </mat-form-field>
 
+    <div *ngIf="authorizationInProgress">
+      <mat-form-field class="full-width">
+        <mat-label>Пароль</mat-label>
+        <input matInput type="password" formControlName="authorizationPassword">
+      </mat-form-field>
+    </div>
+
     <button *ngIf="!registrationInProgress" mat-flat-button color="primary" (click)="checkAccountExistsAndLogIn()">
       Войти
     </button>

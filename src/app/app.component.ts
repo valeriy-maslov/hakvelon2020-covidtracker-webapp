@@ -22,7 +22,7 @@ export class AppComponent {
   }
 
   resetLoginStatus(): void {
-    this.loggedin = localStorage.getItem(LOCAL_STORAGE_EMAIL) === null;
+    this.loggedin = localStorage.getItem(LOCAL_STORAGE_EMAIL) !== null;
     console.log('Resetting login status...');
     if (this.loggedin) {
       this.gotoTodayScreen();
