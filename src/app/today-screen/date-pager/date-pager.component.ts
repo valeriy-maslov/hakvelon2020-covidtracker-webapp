@@ -24,6 +24,7 @@ export class DatePagerComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.dateSwitch.emit(this.currentDate);
   }
 
   formattedDate(): string {

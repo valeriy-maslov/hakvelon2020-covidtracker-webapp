@@ -13,6 +13,8 @@ import { CheckListDialogComponent } from './check-list-dialog/check-list-dialog.
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
+import {VisitService} from './visit.service';
+import {HttpClientModule} from '@angular/common/http';
 
 
 @NgModule({
@@ -28,7 +30,11 @@ import {MatInputModule} from '@angular/material/input';
     FormsModule,
     MatDialogModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    HttpClientModule
+  ],
+  providers: [
+    VisitService
   ]
 })
 export class TodayScreenModule { }

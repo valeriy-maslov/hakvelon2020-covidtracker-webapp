@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {MatDialog} from '@angular/material/dialog';
 import {CheckListDialogComponent} from './check-list-dialog/check-list-dialog.component';
+import {VisitService} from './visit.service';
 
 @Component({
   selector: 'app-today-screen',
@@ -12,7 +13,9 @@ export class TodayScreenComponent implements OnInit {
   appearedInOffice = false;
   checkListExists = false;
 
-  constructor(public matDialog: MatDialog) { }
+  currentDate: Date;
+
+  constructor(public matDialog: MatDialog, private visitService: VisitService) { }
 
   ngOnInit(): void {
   }
@@ -37,10 +40,34 @@ export class TodayScreenComponent implements OnInit {
 
   onSwitchDate(newDate: Date): void {
     console.log('Date switched: ' + newDate);
+    this.currentDate = newDate;
+    this.visitService.getVisitForDate(newDate)
+      .then(value => {
+        this.appearedInOffice = value;
+      }, reason => {
+        console.log('Cant load visit');
+      });
   }
 
   onToggleOfficeSwitch(event: any): void {
     console.log('Office switch status: ' + event.checked);
+    if (event.checked) {
+      this.visitService.setVisitForDate(this.currentDate)
+        .then(() => {
+          console.log('Set visit');
+        }, reason => {
+          console.log('Visit is not set');
+          console.info(reason);
+        });
+    } else {
+      this.visitService.deleteVisitForDate(this.currentDate)
+        .then(() => {
+          console.log('Removed visit');
+        }, reason => {
+          console.log('Visit is not removed');
+          console.info(reason);
+        });
+    }
   }
 
 }

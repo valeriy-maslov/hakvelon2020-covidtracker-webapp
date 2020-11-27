@@ -3,6 +3,13 @@ import {Router} from '@angular/router';
 
 export const LOCAL_STORAGE_EMAIL = 'covidtracker_email';
 
+export const jsDateToIsoDateString = (date: Date): string => {
+  const year = date.getFullYear();
+  const month = date.getMonth();
+  const day = date.getDate();
+  return year + '-' + month + '-' + day;
+};
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
