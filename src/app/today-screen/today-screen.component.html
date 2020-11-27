@@ -9,11 +9,11 @@
 <p *ngIf="appearedInOffice">
   <label>Статус чек-листа</label>
   <mat-icon *ngIf="submittedChecklist" color="primary">check_box</mat-icon>
-  <mat-icon *ngIf="!checkListExists" color="warn">check_box_outline_blank</mat-icon>
+  <mat-icon *ngIf="!checkListExists && !submittedChecklist" color="warn">check_box_outline_blank</mat-icon>
   <mat-icon *ngIf="checkListExists && !submittedChecklist" color="warn">indeterminate_check_box</mat-icon>
   <mat-icon *ngIf="submittedChecklist" color="primary" matTooltip="Чек-лист отправлен">help</mat-icon>
   <mat-icon *ngIf="checkListExists && !submittedChecklist" color="primary" matTooltip="Чек-лист заполнен, но не отправлен">help</mat-icon>
-  <mat-icon *ngIf="!checkListExists" color="primary" matTooltip="Чек-лист не заполнен">help</mat-icon>
+  <mat-icon *ngIf="!checkListExists && !submittedChecklist" color="primary" matTooltip="Чек-лист не заполнен">help</mat-icon>
 </p>
 
 <p *ngIf="appearedInOffice">

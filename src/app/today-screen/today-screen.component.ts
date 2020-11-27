@@ -97,11 +97,13 @@ export class TodayScreenComponent implements OnInit {
   onSwitchDate(newDate: Date): void {
     console.log('Date switched: ' + newDate);
     this.currentDate = newDate;
-    this.checklistService.getChecklistForDate(this.currentDate)
+    this.checklistService.getChecklistForDate(newDate)
       .then(value => {
         this.checkListExists = value !== null;
         if (this.checkListExists) {
           this.submittedChecklist = value.submitted;
+        } else {
+          this.submittedChecklist = false;
         }
       });
     this.visitService.getVisitForDate(newDate)
