@@ -1,0 +1,79 @@
+<p>Информация о пользователе</p>
+
+<div *ngIf="loggedin">
+  <form>
+    <mat-form-field class="full-width">
+      <mat-label>Email</mat-label>
+      <input matInput>
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+      <mat-label>Фамилия</mat-label>
+      <input matInput>
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+      <mat-label>Имя</mat-label>
+      <input matInput>
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+      <mat-label>Отчество</mat-label>
+      <input matInput>
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+      <mat-label>Должность</mat-label>
+      <input matInput>
+    </mat-form-field>
+
+    <button mat-flat-button color="primary">Сохранить</button>
+  </form>
+</div>
+
+<div *ngIf="!loggedin">
+  <form [formGroup]="registerForm">
+    <mat-form-field class="full-width">
+      <mat-label>Email</mat-label>
+      <input matInput formControlName="email">
+    </mat-form-field>
+
+    <button *ngIf="!registrationInProgress" mat-flat-button color="primary" (click)="checkAccountExistsAndLogIn()">
+      Войти
+    </button>
+
+    <div *ngIf="registrationInProgress">
+      <mat-form-field class="full-width">
+        <mat-label>Пароль</mat-label>
+        <input matInput type="password" formControlName="password">
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+        <mat-label>Фамилия</mat-label>
+        <input matInput formControlName="lastName">
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+        <mat-label>Имя</mat-label>
+        <input matInput formControlName="firstName">
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+        <mat-label>Отчество</mat-label>
+        <input matInput formControlName="middleName">
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+        <mat-label>Должность</mat-label>
+        <input matInput formControlName="title">
+      </mat-form-field>
+
+      <button mat-flat-button color="primary" (click)="registerAccount()">Сохранить</button>
+
+      <p>
+        Все поля обязательны для заполнения
+      </p>
+    </div>
+
+  </form>
+</div>

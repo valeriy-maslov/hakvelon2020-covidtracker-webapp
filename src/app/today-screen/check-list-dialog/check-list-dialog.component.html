@@ -1,0 +1,29 @@
+<h1 mat-dialog-title>Чек-лист</h1>
+<div mat-dialog-content>
+  <mat-form-field>
+    <mat-label>Температура утром</mat-label>
+    <input matInput [(ngModel)]="data.morningTemperature">
+    <mat-hint>Пример: 36.6</mat-hint>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Температура вечером</mat-label>
+    <input matInput [(ngModel)]="data.eveningTemperature">
+    <mat-hint>Пример: 36.6</mat-hint>
+  </mat-form-field>
+  <p>
+    <mat-slide-toggle labelPosition="before" [(ngModel)]="data.cough">Кашель?</mat-slide-toggle>
+  </p>
+  <p>
+    <mat-slide-toggle labelPosition="before" [(ngModel)]="data.snuffle">Насморк?</mat-slide-toggle>
+  </p>
+  <p>
+    <mat-slide-toggle labelPosition="before" [(ngModel)]="data.soreThroat">Боль в горле?</mat-slide-toggle>
+  </p>
+  <p>
+    <mat-slide-toggle labelPosition="before" [(ngModel)]="data.isolation">Ограничение контактов?</mat-slide-toggle>
+  </p>
+</div>
+<div mat-dialog-actions>
+  <button mat-flat-button [mat-dialog-close]="data" color="primary">Сохранить</button>
+  <button mat-button (click)="onNoClick()">Отмена</button>
+</div>
