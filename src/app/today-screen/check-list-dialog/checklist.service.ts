@@ -52,15 +52,15 @@ export class ChecklistService {
     });
   }
 
-  submitChecklistForDate(date: Date): Promise<ChecklistModel> {
-    return new Promise<ChecklistModel>((resolve, reject) => {
+  submitChecklistForDate(date: Date): Promise<void> {
+    return new Promise<void>((resolve, reject) => {
       const email = localStorage.getItem(LOCAL_STORAGE_EMAIL);
       const dateParam = jsDateToIsoDateString(date);
       this.http.post(environment.base_url + '/accounts/' + email + '/checklists/submit', {}, {
         params: {
           date: dateParam
         }
-      }).subscribe((value: ChecklistModel) => resolve(value), error => reject(error));
+      }).subscribe(() => resolve(), error => reject(error));
     });
   }
 }

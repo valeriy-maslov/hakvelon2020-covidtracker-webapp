@@ -15,6 +15,7 @@ export class TodayScreenComponent implements OnInit {
   checkListExists = false;
 
   currentDate: Date;
+  submittedChecklist: boolean;
 
   constructor(public matDialog: MatDialog, private visitService: VisitService, private checklistService: ChecklistService) { }
 
@@ -82,9 +83,27 @@ export class TodayScreenComponent implements OnInit {
     });
   }
 
+  submitChecklist(): void {
+    this.checklistService.submitChecklistForDate(this.currentDate)
+      .then(value => {
+        console.log('Checklist submitted');
+        this.submittedChecklist = true;
+      }, reason => {
+        console.log('Cant submit checklist');
+        console.info(reason);
+      });
+  }
+
   onSwitchDate(newDate: Date): void {
     console.log('Date switched: ' + newDate);
     this.currentDate = newDate;
+    this.checklistService.getChecklistForDate(this.currentDate)
+      .then(value => {
+        this.checkListExists = value !== null;
+        if (this.checkListExists) {
+          this.submittedChecklist = value.submitted;
+        }
+      });
     this.visitService.getVisitForDate(newDate)
       .then(value => {
         this.appearedInOffice = value;
