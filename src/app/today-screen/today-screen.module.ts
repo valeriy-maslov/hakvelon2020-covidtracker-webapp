@@ -15,6 +15,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {VisitService} from './visit.service';
 import {HttpClientModule} from '@angular/common/http';
+import {ChecklistService} from './check-list-dialog/checklist.service';
 
 
 @NgModule({
@@ -34,7 +35,8 @@ import {HttpClientModule} from '@angular/common/http';
     HttpClientModule
   ],
   providers: [
-    VisitService
+    VisitService,
+    ChecklistService
   ]
 })
 export class TodayScreenModule { }

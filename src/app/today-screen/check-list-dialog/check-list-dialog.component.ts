@@ -2,11 +2,11 @@ import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 
 export interface ChecklistDialogData {
-  morningTemperature: number;
-  eveningTemperature: number;
+  temperatureMorning: number;
+  temperatureEvening: number;
+  soreThroat: boolean;
   cough: boolean;
   snuffle: boolean;
-  soreThroat: boolean;
   isolation: boolean;
 }
 

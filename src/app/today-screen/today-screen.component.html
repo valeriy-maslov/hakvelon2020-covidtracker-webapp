@@ -10,6 +10,7 @@
   <label>Статус чек-листа</label>
   <mat-icon *ngIf="checkListExists" color="primary">check_box</mat-icon>
   <mat-icon *ngIf="!checkListExists" color="warn">check_box_outline_blank</mat-icon>
+  <mat-icon *ngIf="!checkListExists" color="warn">indeterminate_check_box</mat-icon>
   <mat-icon color="primary" matTooltip="Чек-лист заполнен, но не отправлен">help</mat-icon>
 </p>
 
