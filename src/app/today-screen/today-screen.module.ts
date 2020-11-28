@@ -16,10 +16,14 @@ import {MatInputModule} from '@angular/material/input';
 import {VisitService} from './visit.service';
 import {HttpClientModule} from '@angular/common/http';
 import {ChecklistService} from './check-list-dialog/checklist.service';
+import { CovidAlarmComponent } from './covid-alarm/covid-alarm.component';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatNativeDateModule} from '@angular/material/core';
+import {AlarmService} from './covid-alarm/alarm.service';
 
 
 @NgModule({
-  declarations: [TodayScreenComponent, DatePagerComponent, CheckListDialogComponent],
+  declarations: [TodayScreenComponent, DatePagerComponent, CheckListDialogComponent, CovidAlarmComponent],
   imports: [
     CommonModule,
     BrowserModule,
@@ -32,11 +36,14 @@ import {ChecklistService} from './check-list-dialog/checklist.service';
     MatDialogModule,
     MatFormFieldModule,
     MatInputModule,
-    HttpClientModule
+    HttpClientModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
   providers: [
     VisitService,
-    ChecklistService
+    ChecklistService,
+    AlarmService
   ]
 })
 export class TodayScreenModule { }

@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {MatDialog, MatDialogRef} from '@angular/material/dialog';
 import {CheckListDialogComponent} from './check-list-dialog/check-list-dialog.component';
 import {VisitService} from './visit.service';
 import {ChecklistService} from './check-list-dialog/checklist.service';
+import {CovidAlarmComponent} from './covid-alarm/covid-alarm.component';
+import {AlarmService} from './covid-alarm/alarm.service';
 
 @Component({
   selector: 'app-today-screen',
@@ -17,7 +19,11 @@ export class TodayScreenComponent implements OnInit {
   currentDate: Date;
   submittedChecklist: boolean;
 
-  constructor(public matDialog: MatDialog, private visitService: VisitService, private checklistService: ChecklistService) { }
+  constructor(public matDialog: MatDialog,
+              private visitService: VisitService,
+              private checklistService: ChecklistService,
+              private alarmService: AlarmService) {
+  }
 
   ngOnInit(): void {
   }
@@ -133,6 +139,19 @@ export class TodayScreenComponent implements OnInit {
           console.info(reason);
         });
     }
+  }
+
+  openCovidAlarmDialog(): void {
+    const alarmDialog = this.matDialog.open(CovidAlarmComponent, {});
+    alarmDialog.afterClosed().subscribe(result => {
+      console.log('Alarm dialog closed');
+      console.info(result);
+      this.alarmService.covidAlarm().then(() => {
+        console.log('ALARM!!!');
+      }, reason => {
+        console.log('NOT ALARM!!!');
+      });
+    });
   }
 
 }
